@@ -1,8 +1,10 @@
 import axios from "axios";
 
+
 const api = axios.create({
-  baseURL: process.env.NEXT_PUBLIC_API_URL,
+  baseURL: "https://sentinelnet-5kgv.onrender.com",
 });
+
 
 export async function analyzeThreat(
   content: string
