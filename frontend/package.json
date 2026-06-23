@@ -25,6 +25,7 @@
     "react-dom": "19.2.4",
     "react-dropzone": "^15.0.0",
     "react-intersection-observer": "^10.0.3",
+    "react-type-animation": "^3.2.0",
     "reactflow": "^11.11.4",
     "recharts": "^3.8.1",
     "shadcn": "^4.11.0",
