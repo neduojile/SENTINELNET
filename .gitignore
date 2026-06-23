@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
 # dependencies
@@ -41,3 +42,93 @@ yarn-error.log*
 next-env.d.ts
 
 /lib/generated/prisma
+=======
+# =========================
+# Dependencies
+# =========================
+
+node_modules/
+frontend/node_modules/
+
+# =========================
+# Next.js
+# =========================
+
+.next/
+frontend/.next/
+out/
+
+# =========================
+# Environment Variables
+# =========================
+
+.env
+.env.*
+backend/.env
+frontend/.env
+
+# =========================
+# Python
+# =========================
+
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Virtual Environments
+venv/
+.venv/
+env/
+
+# =========================
+# Database
+# =========================
+
+*.db
+*.sqlite
+*.sqlite3
+
+# =========================
+# Logs
+# =========================
+
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# =========================
+# Build Output
+# =========================
+
+build/
+dist/
+
+# =========================
+# Vercel
+# =========================
+
+.vercel/
+
+# =========================
+# OS Files
+# =========================
+
+.DS_Store
+Thumbs.db
+
+# =========================
+# TypeScript
+# =========================
+
+*.tsbuildinfo
+next-env.d.ts
+
+# =========================
+# IDE
+# =========================
+
+.vscode/
+.idea/
+>>>>>>> 5f54d0e77b0c88375cc5e62460fb85db2dd7e3e2
