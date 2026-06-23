@@ -75,20 +75,37 @@ export default function Home() {
 
           <TypewriterIntro />
 
-          <h1
-  className="
-  text-3xl
-  sm:text-5xl
-  md:text-7xl
-  lg:text-9xl
-            font-black
-            tracking-wide
-            drop-shadow-[0_0_30px_rgba(0,255,255,0.3)]
-            "
-          >
-            SENTINELNET
-          </h1>
+         <div className="flex flex-col items-center">
 
+  <img
+    src="/assets/sentinelnet-logo.png"
+    alt="SentinelNet Logo"
+    className="
+      w-24
+      h-20
+      md:w-32
+      md:h-32
+      mb-6
+      object-contain
+      drop-shadow-[0_0_25px_rgba(0,255,255,0.5)]
+    "
+  />
+
+  <h1
+    className="
+      text-3xl
+      sm:text-5xl
+      md:text-7xl
+      lg:text-9xl
+      font-black
+      tracking-wide
+      drop-shadow-[0_0_30px_rgba(0,255,255,0.3)]
+    "
+  >
+    SENTINELNET
+  </h1>
+
+</div>
            <p
             className="
             mt-8

@@ -94,17 +94,25 @@ return (
   <div className="border-b border-cyan-500/20 backdrop-blur-md">
 
     <div className="max-w-7xl mx-auto px-4 md:px-6 py-8">
+<div className="flex items-center gap-4">
+<img
+  src="/assets/sentinelnet-logo.png"
+  alt="SentinelNet Logo"
+  className="w-20 h-23 object-contain"
+/>
 
-      <h1
-        className="
-          text-4xl
-          md:text-6xl
-          font-black
-          tracking-wide
-        "
-      >
-        SENTINELNET
-      </h1>
+  <h1
+    className="
+      text-4xl
+      md:text-6xl
+      font-black
+      tracking-wide
+    "
+  >
+    SENTINELNET
+  </h1>
+
+</div>
 
       <div
         className="
