@@ -1,28 +1,75 @@
 import jsPDF from "jspdf";
 import autoTable from "jspdf-autotable";
 
-export function generateThreatReport(result: any) {
+function getAttribution(
+  category: string
+) {
+  if (
+    category?.includes("Phishing")
+  ) {
+    return "Credential Harvesting Campaign";
+  }
+
+  if (
+    category?.includes("Malware")
+  ) {
+    return "Malware Delivery Operation";
+  }
+
+  if (
+    category?.includes("Crypto")
+  ) {
+    return "Financially Motivated Threat Actor";
+  }
+
+  return "Unknown Threat Actor";
+}
+
+export function generateThreatReport(
+  result: any
+) {
   const doc = new jsPDF();
 
+  const reportId =
+    `STN-${new Date().getFullYear()}-${Date.now()}`;
+
   doc.setFontSize(24);
-  doc.text("SENTINELNET", 14, 20);
+  doc.text(
+    "SENTINELNET",
+    14,
+    20
+  );
 
   doc.setFontSize(12);
+
   doc.text(
-    "Threat Intelligence Investigation Report",
+    "THREAT INTELLIGENCE REPORT",
     14,
     30
   );
 
-  doc.setFontSize(10);
   doc.text(
-    `Generated: ${new Date().toLocaleString()}`,
+    "Classification: Internal Use",
     14,
     38
   );
 
+  doc.text(
+    `Report ID: ${reportId}`,
+    14,
+    46
+  );
+
+  doc.setFontSize(10);
+
+  doc.text(
+    `Generated: ${new Date().toLocaleString()}`,
+    14,
+    54
+  );
+
   autoTable(doc, {
-    startY: 50,
+    startY: 65,
     head: [["Field", "Value"]],
     body: [
       [
@@ -47,9 +94,12 @@ export function generateThreatReport(result: any) {
   let currentY =
     (doc as any).lastAutoTable.finalY + 15;
 
+  // EXECUTIVE SUMMARY
+
   doc.setFontSize(14);
+
   doc.text(
-    "Executive Summary",
+    "EXECUTIVE SUMMARY",
     14,
     currentY
   );
@@ -60,7 +110,8 @@ export function generateThreatReport(result: any) {
 
   const summaryLines =
     doc.splitTextToSize(
-      result.analysis.summary,
+      result.analysis.summary ||
+        "No summary available.",
       180
     );
 
@@ -73,14 +124,43 @@ export function generateThreatReport(result: any) {
   currentY +=
     summaryLines.length * 5 + 15;
 
+  // THREAT ATTRIBUTION
+
   doc.setFontSize(14);
+
   doc.text(
-    "Recommended Actions",
+    "THREAT ATTRIBUTION",
     14,
     currentY
   );
 
   currentY += 10;
+
+  doc.setFontSize(10);
+
+  doc.text(
+    `Likely Objective: ${getAttribution(
+      result.analysis.threat_category
+    )}`,
+    14,
+    currentY
+  );
+
+  currentY += 15;
+
+  // RECOMMENDED ACTIONS
+
+  doc.setFontSize(14);
+
+  doc.text(
+    "RECOMMENDED ACTIONS",
+    14,
+    currentY
+  );
+
+  currentY += 10;
+
+  doc.setFontSize(10);
 
   if (
     result.analysis.recommendations &&
@@ -100,7 +180,68 @@ export function generateThreatReport(result: any) {
         currentY += 8;
       }
     );
+  } else {
+    doc.text(
+      "No recommendations available.",
+      18,
+      currentY
+    );
+
+    currentY += 10;
   }
+
+  // THREAT FINGERPRINT
+
+  currentY += 10;
+
+  doc.setFontSize(14);
+
+  doc.text(
+    "THREAT FINGERPRINT",
+    14,
+    currentY
+  );
+
+  currentY += 10;
+
+  doc.setFontSize(10);
+
+  doc.text(
+    result.analysis.fingerprint ||
+      "Unavailable",
+    14,
+    currentY
+  );
+
+  currentY += 20;
+
+  // ANALYST NOTES
+
+  doc.setFontSize(14);
+
+  doc.text(
+    "ANALYST NOTES",
+    14,
+    currentY
+  );
+
+  currentY += 10;
+
+  doc.setFontSize(10);
+
+  doc.text(
+    "Generated automatically by SentinelNet Threat Genome Engine.",
+    14,
+    currentY
+  );
+
+  currentY += 10;
+
+  doc.text(
+    "This report is intended for security investigation and threat intelligence purposes.",
+    14,
+    currentY
+  );
 
   doc.save(
     `sentinelnet-report-${Date.now()}.pdf`
