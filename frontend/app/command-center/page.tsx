@@ -19,6 +19,9 @@ import InvestigationPipeline from "@/components/investigation/InvestigationPipel
 import AnalysisProgress from "@/components/investigation/AnalysisProgress";
 import AnalysisOverlay from "@/components/investigation/AnalysisOverlay";
 import { TypeAnimation } from "react-type-animation";
+import {
+ generateThreatReport,
+} from "@/lib/reportGenerator";
 
 export default function CommandCenter() {
 const [content, setContent] = useState("");
@@ -529,6 +532,28 @@ return (
     bg-cyan-950/10
   "
   >
+
+    <div className="mb-6 flex justify-end">
+
+  <button
+    onClick={() =>
+      generateThreatReport(result)
+    }
+    className="
+      px-6
+      py-3
+      rounded-xl
+      border
+      border-cyan-400
+      bg-cyan-500/10
+      hover:bg-cyan-500/20
+      transition-all
+    "
+  >
+    EXPORT INTELLIGENCE REPORT
+  </button>
+
+</div>
 
     <div className="text-cyan-400 mb-2">
       THREAT GENOME FINGERPRINT
