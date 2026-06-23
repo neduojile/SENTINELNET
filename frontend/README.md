@@ -1,36 +1,258 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# SentinelNet
 
-## Getting Started
+## Threat Genome Intelligence Platform
 
-First, run the development server:
+SentinelNet is an AI-powered cyber threat intelligence platform designed to detect, analyze, classify, and correlate malicious activity from emails, URLs, indicators of compromise (IOCs), threat reports, and security events.
+
+The platform leverages Large Language Models, threat correlation logic, IOC extraction, memory matching, and intelligence enrichment to transform raw security data into actionable intelligence.
+
+---
+
+## Key Features
+
+### Threat Analysis Engine
+
+* AI-powered threat classification
+* Phishing detection
+* Malware detection
+* Crypto scam detection
+* Brand impersonation detection
+* Credential theft identification
+
+### IOC Extraction
+
+Automatically extracts:
+
+* Domains
+* URLs
+* IP Addresses
+* Email Addresses
+* Cryptocurrency Wallets
+* File Hashes
+* Phone Numbers
+
+### Threat Genome Fingerprinting
+
+Generates a unique threat fingerprint for every analyzed threat to support:
+
+* Campaign tracking
+* Threat clustering
+* Memory correlation
+* Repeat attack detection
+
+### Threat Intelligence Dashboard
+
+Provides:
+
+* Risk scoring
+* Confidence scoring
+* Threat categorization
+* Attack family identification
+* Executive intelligence summaries
+* Recommended response actions
+
+### Threat Memory Database
+
+Stores historical intelligence and enables:
+
+* Memory matching
+* Similar attack discovery
+* Campaign correlation
+* Historical threat tracking
+
+### MITRE ATT&CK Mapping
+
+Maps observed behaviors to recognized attack techniques and tactics.
+
+---
+
+## Architecture
+
+Frontend:
+
+* Next.js 16
+* React
+* Tailwind CSS
+* Axios
+
+Backend:
+
+* FastAPI
+* SQLAlchemy
+* SQLite / PostgreSQL
+* Python
+
+Artificial Intelligence:
+
+* Groq LLM API
+* Threat Genome Engine
+* IOC Correlation Engine
+* Threat Memory Engine
+
+---
+
+## Platform Workflow
+
+1. User submits threat content.
+2. SentinelNet extracts indicators.
+3. AI engine classifies the threat.
+4. Threat Genome Fingerprint is generated.
+5. Intelligence database is queried.
+6. Historical correlations are identified.
+7. MITRE ATT&CK mapping is performed.
+8. Executive intelligence report is generated.
+9. Recommended actions are provided.
+
+---
+
+## Supported Inputs
+
+* Phishing Emails
+* Threat Reports
+* URLs
+* IOC Dumps
+* Security Alerts
+* Malware Indicators
+* Crypto Scam Reports
+* Brand Impersonation Attempts
+
+---
+
+## Screenshots
+
+### Landing Page
+
+Modern cyber intelligence dashboard with live operational telemetry.
+
+### Command Center
+
+Threat Genome Command Center used for threat investigations.
+
+### Threat Analysis
+
+Executive threat intelligence reporting workspace.
+
+---
+
+## Installation
+
+### Clone Repository
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/neduojile/SENTINELNET.git
+cd SENTINELNET
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Backend Setup
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+cd backend
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+python -m venv venv
 
-## Learn More
+venv\Scripts\activate
 
-To learn more about Next.js, take a look at the following resources:
+pip install -r requirements.txt
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+python create_tables.py
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+uvicorn main:app --reload
+```
 
-## Deploy on Vercel
+### Frontend Setup
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```bash
+cd frontend
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+npm install
+
+npm run dev
+```
+
+---
+
+## Environment Variables
+
+Create:
+
+```env
+backend/.env
+```
+
+Example:
+
+```env
+GROQ_API_KEY=your_groq_api_key
+```
+
+---
+
+## API Endpoints
+
+### Health Check
+
+```http
+GET /
+```
+
+### Threat Analysis
+
+```http
+POST /analyze
+```
+
+### Statistics
+
+```http
+GET /stats
+```
+
+---
+
+## Example Threat Categories
+
+* Phishing
+* Malware
+* Credential Theft
+* Crypto Scam
+* Brand Impersonation
+* Social Engineering
+* Suspicious Infrastructure
+
+---
+
+## Security Notice
+
+SentinelNet is intended for cybersecurity research, threat intelligence analysis, security operations, and educational purposes.
+
+Users are responsible for ensuring compliance with local laws, organizational policies, and security guidelines.
+
+---
+
+## Future Roadmap
+
+* Real-time IOC feeds
+* Threat actor profiling
+* YARA rule generation
+* SIEM integrations
+* VirusTotal enrichment
+* AbuseIPDB enrichment
+* MITRE ATT&CK visual mapping
+* Threat campaign clustering
+* Multi-tenant intelligence workspaces
+
+---
+
+## Author
+
+**Chinexojile Nedu**
+
+Cybersecurity Researcher
+Threat Intelligence Enthusiast
+AI Security Developer
+
+---
+
+## SentinelNet
+
+**Detect. Correlate. Respond.**
