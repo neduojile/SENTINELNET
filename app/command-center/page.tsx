@@ -679,7 +679,7 @@ return (
   <div className="flex justify-end mb-8">
 
     <button
-      onClick={() => downloadThreatReport(result)}
+   onClick={handleEvidenceUpload}
       className="
         px-6
         py-3

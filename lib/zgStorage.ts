@@ -8,9 +8,12 @@ export async function uploadPdfTo0G(
     file
   );
 
-  const response =
-    await fetch(
-      "http://127.0.0.1:8000/evidence/upload",
+ const API_URL =
+  process.env.NEXT_PUBLIC_API_URL!;
+
+const response =
+  await fetch(
+    `${API_URL}/evidence/upload`,
       {
         method: "POST",
         body: formData,
