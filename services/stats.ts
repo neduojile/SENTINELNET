@@ -1,9 +1,10 @@
-import axios from "axios";
+const API_URL =
+  process.env.NEXT_PUBLIC_API_URL;
 
 export async function getStats() {
-  const response = await axios.get(
-    "http://127.0.0.1:8000/stats"
+  const response = await fetch(
+    `${API_URL}/stats`
   );
 
-  return response.data;
+  return response.json();
 }
