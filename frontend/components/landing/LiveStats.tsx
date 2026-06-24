@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import CountUp from "react-countup";
-import { getStats } from "@/services/stats";
+import { getStats } from "../../services/stats";
 
 export default function LiveStats() {
 

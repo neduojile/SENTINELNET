@@ -2,13 +2,13 @@
 
 import Link from "next/link";
 import CountUp from "react-countup";
-import LiveStats from "@/components/landing/LiveStats";
-import BootSequence from "@/components/command-center/BootSequence";
-import LiveClock from "@/components/command-center/LiveClock";
-import ThreatTicker from "@/components/command-center/ThreatTicker";
-import TypewriterIntro from "@/components/command-center/TypewriterIntro";
-import CommandLog from "@/components/command-center/CommandLog";
-import FinalSection from "@/components/command-center/FinalSection";
+import LiveStats from "../components/landing/LiveStats";
+import BootSequence from "../components/command-center/BootSequence";
+import LiveClock from "../components/command-center/LiveClock";
+import ThreatTicker from "../components/command-center/ThreatTicker";
+import TypewriterIntro from "../components/command-center/TypewriterIntro";
+import CommandLog from "../components/command-center/CommandLog";
+import FinalSection from "../components/command-center/FinalSection";
 
 export default function Home() {
   return (

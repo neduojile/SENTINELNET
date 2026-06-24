@@ -4,7 +4,7 @@ import { useState } from "react";
 
 import {
   analyzeThreat,
-} from "@/services/api";
+} from "../services/api";
 
 export default function useThreatAnalysis() {
 

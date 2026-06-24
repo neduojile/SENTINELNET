@@ -1,3 +1,9 @@
+"use client";
+
+import React, { useState } from "react";
+
+import useThreatAnalysis from "../../hooks/useThreatAnalysis";
+
 import ThreatRadar from "../../components/investigation/ThreatRadar";
 import IntelligenceBrief from "../../components/investigation/IntelligenceBrief";
 import IOCPanel from "../../components/investigation/IOCPanel";
@@ -13,13 +19,15 @@ import InvestigationPipeline from "../../components/investigation/InvestigationP
 import AnalysisProgress from "../../components/investigation/AnalysisProgress";
 import AnalysisOverlay from "../../components/investigation/AnalysisOverlay";
 
+import { TypeAnimation } from "react-type-animation";
+
 import {
   generateThreatReport,
   downloadThreatReport,
 } from "../../lib/reportGenerator";
 
 import {
-  uploadEvidence
+  uploadEvidence,
 } from "../../services/evidence";
 
 import {

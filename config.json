@@ -1,0 +1,35 @@
+warning: in the working copy of 'frontend/tsconfig.json', LF will be replaced by CRLF the next time Git touches it
+[1mdiff --git a/frontend/tsconfig.json b/frontend/tsconfig.json[m
+[1mindex 3a13f90..98d8aae 100644[m
+[1m--- a/frontend/tsconfig.json[m
+[1m+++ b/frontend/tsconfig.json[m
+[36m@@ -13,15 +13,20 @@[m
+     "isolatedModules": true,[m
+     "jsx": "react-jsx",[m
+     "incremental": true,[m
+[32m+[m
+[32m+[m[32m    "baseUrl": ".",[m
+[32m+[m
+     "plugins": [[m
+       {[m
+         "name": "next"[m
+       }[m
+     ],[m
+[32m+[m
+     "paths": {[m
+       "@/*": ["./*"][m
+     }[m
+   },[m
+[32m+[m
+   "include": [[m
+     "next-env.d.ts",[m
+     "**/*.ts",[m
+[36m@@ -30,5 +35,6 @@[m
+     ".next/dev/types/**/*.ts",[m
+     "**/*.mts"[m
+   ],[m
+[32m+[m
+   "exclude": ["node_modules"][m
+[31m-}[m
+[32m+[m[32m}[m
+\ No newline at end of file[m
