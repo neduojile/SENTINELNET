@@ -1,35 +1,30 @@
-"use client";
+import ThreatRadar from "../../components/investigation/ThreatRadar";
+import IntelligenceBrief from "../../components/investigation/IntelligenceBrief";
+import IOCPanel from "../../components/investigation/IOCPanel";
+import ThreatGraph from "../../components/investigation/ThreatGraph";
+import ThreatTimeline from "../../components/investigation/ThreatTimeline";
+import InvestigationWorkspace from "../../components/investigation/InvestigationWorkspace";
+import OperationsFeed from "../../components/investigation/OperationsFeed";
+import SystemTerminal from "../../components/investigation/SystemTerminal";
+import MemoryCorrelation from "../../components/investigation/MemoryCorrelation";
+import RecommendedActions from "../../components/investigation/RecommendedActions";
+import ThreatSummaryBar from "../../components/investigation/ThreatSummaryBar";
+import InvestigationPipeline from "../../components/investigation/InvestigationPipeline";
+import AnalysisProgress from "../../components/investigation/AnalysisProgress";
+import AnalysisOverlay from "../../components/investigation/AnalysisOverlay";
 
-import { useState } from "react";
-
-import useThreatAnalysis from "../../hooks/useThreatAnalysis";
-import ThreatRadar from "@/components/investigation/ThreatRadar";
-import IntelligenceBrief from "@/components/investigation/IntelligenceBrief";
-import IOCPanel from "@/components/investigation/IOCPanel";
-import ThreatGraph from "@/components/investigation/ThreatGraph";
-import ThreatTimeline from "@/components/investigation/ThreatTimeline";
-import InvestigationWorkspace from "@/components/investigation/InvestigationWorkspace";
-import OperationsFeed from "@/components/investigation/OperationsFeed";
-import SystemTerminal from "@/components/investigation/SystemTerminal";
-import MemoryCorrelation from "@/components/investigation/MemoryCorrelation";
-import RecommendedActions from "@/components/investigation/RecommendedActions";
-import ThreatSummaryBar from "@/components/investigation/ThreatSummaryBar";
-import InvestigationPipeline from "@/components/investigation/InvestigationPipeline";
-import AnalysisProgress from "@/components/investigation/AnalysisProgress";
-import AnalysisOverlay from "@/components/investigation/AnalysisOverlay";
-import { TypeAnimation } from "react-type-animation";
 import {
   generateThreatReport,
   downloadThreatReport,
-} from "@/lib/reportGenerator";
+} from "../../lib/reportGenerator";
+
 import {
   uploadEvidence
-} from "@/services/evidence";
-
+} from "../../services/evidence";
 
 import {
- uploadPdfTo0G,
-} from "@/lib/zgStorage";
+  uploadPdfTo0G,
+} from "../../lib/zgStorage";
 
 export default function CommandCenter() {
 const [content, setContent] = useState("");
