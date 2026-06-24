@@ -11,6 +11,7 @@ from api.analyze import router as analyze_router
 from api.threats import router as threats_router
 from api.stats import router as stats_router
 from api.search import router as search_router
+from api.evidence import router as evidence_router
 
 
 # Create PostgreSQL tables
@@ -33,7 +34,9 @@ app.include_router(analyze_router)
 app.include_router(threats_router)
 app.include_router(stats_router)
 app.include_router(search_router)
-
+app.include_router(
+    evidence_router
+)
 
 @app.get("/")
 async def root():
