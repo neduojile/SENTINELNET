@@ -1021,27 +1021,104 @@ return (
 
 <button
   onClick={() =>
-    downloadThreatReport(result)
+    downloadThreatReport(
+      result
+    )
   }
   className="
-    w-full
-    py-4
-    rounded-2xl
-    border
-    border-cyan-400
-    bg-gradient-to-r
-    from-cyan-500/10
-    to-blue-500/10
-    hover:from-cyan-500/20
-    hover:to-blue-500/20
-    hover:shadow-[0_0_40px_rgba(0,255,255,0.3)]
-    transition-all
-    text-lg
-    font-bold
-  "
+  px-8
+  py-4
+  rounded-xl
+  border
+  border-cyan-500/40
+  bg-cyan-500/10
+  hover:bg-cyan-500/20
+  transition-all
+  text-lg
+  font-bold
+"
 >
   DOWNLOAD VERIFIED INTELLIGENCE REPORT
 </button>
+
+{evidence && (
+
+<div
+  className="
+  mt-10
+  p-6
+  rounded-2xl
+  border
+  border-green-500/30
+  bg-green-500/5
+  backdrop-blur-md
+"
+>
+
+  <div className="text-green-400 font-bold text-xl mb-4">
+    FORENSIC STORAGE PROOF
+  </div>
+
+  <div className="space-y-4 text-sm">
+
+    <div>
+      <span className="text-gray-400">
+        STATUS:
+      </span>
+      <div className="text-green-400 font-bold">
+        VERIFIED
+      </div>
+    </div>
+
+    <div>
+      <span className="text-gray-400">
+        SHA256 ROOT HASH:
+      </span>
+
+      <div
+        className="
+        text-cyan-300
+        break-all
+        font-mono
+        mt-1
+      "
+      >
+        {evidence.rootHash}
+      </div>
+    </div>
+
+    <div>
+      <span className="text-gray-400">
+        TRANSACTION HASH:
+      </span>
+
+      <div
+        className="
+        text-yellow-300
+        break-all
+        font-mono
+        mt-1
+      "
+      >
+        {evidence.txHash}
+      </div>
+    </div>
+
+    <div>
+      <span className="text-gray-400">
+        INTEGRITY:
+      </span>
+
+      <div className="text-green-400 font-bold">
+        PASSED
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+)}
 
 </div>
 
