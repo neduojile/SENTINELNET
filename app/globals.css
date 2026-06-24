@@ -121,10 +121,99 @@
   * {
     @apply border-border outline-ring/50;
   }
-  body {
-    @apply bg-background text-foreground;
-  }
+ body {
+  background: #050816;
+  color: white;
+}
+.cyber-grid {
+  background-image:
+    linear-gradient(rgba(0,255,255,0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,255,255,0.05) 1px, transparent 1px);
+  background-size: 30px 30px;
+}
   html {
     @apply font-sans;
   }
+}
+body {
+  background: #020617;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+
+  background-image:
+    linear-gradient(
+      rgba(0,255,255,0.04) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      rgba(0,255,255,0.04) 1px,
+      transparent 1px
+    );
+
+  background-size: 40px 40px;
+
+  pointer-events: none;
+
+  z-index: -1;
+}
+
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0%);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+/* ===========================
+   SENTINELNET SCROLLBAR
+=========================== */
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(0,0,0,0.8);
+  border-left: 1px solid rgba(0,255,255,0.08);
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(
+    to bottom,
+    rgba(0,255,255,0.9),
+    rgba(0,180,255,0.6)
+  );
+
+  border-radius: 999px;
+
+  border: 2px solid rgba(0,0,0,0.9);
+
+  box-shadow:
+    0 0 12px rgba(0,255,255,0.5),
+    0 0 24px rgba(0,255,255,0.2);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(
+    to bottom,
+    rgba(0,255,255,1),
+    rgba(0,200,255,0.8)
+  );
+
+  box-shadow:
+    0 0 18px rgba(0,255,255,0.8),
+    0 0 30px rgba(0,255,255,0.4);
+}
+
+::-webkit-scrollbar-corner {
+  background: black;
 }
