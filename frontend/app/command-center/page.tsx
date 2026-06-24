@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 
-import useThreatAnalysis from "@/hooks/useThreatAnalysis";
+import useThreatAnalysis from "../../hooks/useThreatAnalysis";
 import ThreatRadar from "@/components/investigation/ThreatRadar";
 import IntelligenceBrief from "@/components/investigation/IntelligenceBrief";
 import IOCPanel from "@/components/investigation/IOCPanel";
