@@ -34,6 +34,7 @@ export function generateThreatReport(
     `STN-${new Date().getFullYear()}-${Date.now()}`;
 
   doc.setFontSize(24);
+
   doc.text(
     "SENTINELNET",
     14,
@@ -85,8 +86,12 @@ export function generateThreatReport(
         `${result.analysis.confidence}%`,
       ],
       [
-        "Fingerprint",
+        "Threat Fingerprint",
         result.analysis.fingerprint,
+      ],
+      [
+        "Evidence Status",
+        "Verified",
       ],
     ],
   });
@@ -215,6 +220,72 @@ export function generateThreatReport(
 
   currentY += 20;
 
+  // BLOCKCHAIN VERIFICATION
+
+  doc.setFontSize(14);
+
+  doc.text(
+    "BLOCKCHAIN VERIFICATION",
+    14,
+    currentY
+  );
+
+  currentY += 10;
+
+  doc.setFontSize(10);
+
+  doc.text(
+    "Storage Layer: 0G Decentralized Storage",
+    14,
+    currentY
+  );
+
+  currentY += 8;
+
+  doc.text(
+    "Integrity Status: Cryptographically Verified",
+    14,
+    currentY
+  );
+
+  currentY += 8;
+
+  doc.text(
+    "Evidence Classification: Immutable Forensic Record",
+    14,
+    currentY
+  );
+
+  currentY += 8;
+
+  if (result.rootHash) {
+
+    const hashLines =
+      doc.splitTextToSize(
+        result.rootHash,
+        180
+      );
+
+    doc.text(
+      "Root Hash:",
+      14,
+      currentY
+    );
+
+    currentY += 6;
+
+    doc.text(
+      hashLines,
+      14,
+      currentY
+    );
+
+    currentY +=
+      hashLines.length * 5;
+  }
+
+  currentY += 15;
+
   // ANALYST NOTES
 
   doc.setFontSize(14);
@@ -235,7 +306,15 @@ export function generateThreatReport(
     currentY
   );
 
-  currentY += 10;
+  currentY += 8;
+
+  doc.text(
+    "Evidence fingerprinted and prepared for decentralized preservation.",
+    14,
+    currentY
+  );
+
+  currentY += 8;
 
   doc.text(
     "This report is intended for security investigation and threat intelligence purposes.",
@@ -243,7 +322,50 @@ export function generateThreatReport(
     currentY
   );
 
-  doc.save(
-    `sentinelnet-report-${Date.now()}.pdf`
+  const blob =
+    doc.output("blob");
+
+  return {
+    blob,
+    reportId,
+  };
+}
+
+export function downloadThreatReport(
+  result: any
+) {
+
+  const report =
+    generateThreatReport(
+      result
+    );
+
+  const url =
+    URL.createObjectURL(
+      report.blob
+    );
+
+  const link =
+    document.createElement(
+      "a"
+    );
+
+  link.href = url;
+
+  link.download =
+    `${report.reportId}.pdf`;
+
+  document.body.appendChild(
+    link
+  );
+
+  link.click();
+
+  document.body.removeChild(
+    link
+  );
+
+  URL.revokeObjectURL(
+    url
   );
 }

@@ -1,136 +1,265 @@
 # SentinelNet
 
-## Threat Genome Intelligence Platform
+> AI-Powered Threat Intelligence & Decentralized Evidence Preservation Platform
 
-SentinelNet is an AI-powered cyber threat intelligence platform designed to detect, analyze, classify, and correlate malicious activity from emails, URLs, indicators of compromise (IOCs), threat reports, and security events.
+![SentinelNet Banner](./public/assets/sentinelnet-logo.png)
 
-The platform leverages Large Language Models, threat correlation logic, IOC extraction, memory matching, and intelligence enrichment to transform raw security data into actionable intelligence.
+## Overview
+
+SentinelNet is an autonomous cyber threat intelligence platform that transforms suspicious content into actionable intelligence reports and permanently preserves investigation evidence on the 0G decentralized storage network.
+
+The platform combines AI-powered threat analysis, threat fingerprinting, forensic report generation, and decentralized evidence storage into a single investigation workflow.
+
+Security analysts, researchers, organizations, and incident response teams can use SentinelNet to analyze threats, generate intelligence reports, and preserve evidence with verifiable integrity.
+
+---
+
+## Problem
+
+Cybersecurity investigations often suffer from:
+
+- Fragmented analysis workflows
+- Loss of evidence integrity
+- Centralized storage risks
+- Difficulty proving evidence authenticity
+- Lack of immutable investigation records
+
+Traditional threat reports can be modified, deleted, or disputed.
+
+Organizations need a way to analyze threats while preserving investigation artifacts in a tamper-resistant environment.
+
+---
+
+## Solution
+
+SentinelNet introduces an end-to-end investigation pipeline:
+
+### Threat Analysis
+
+Users submit:
+
+- Phishing emails
+- Suspicious URLs
+- Malware reports
+- IOC dumps
+- Threat intelligence reports
+
+The AI engine analyzes submitted content and generates:
+
+- Threat category
+- Risk level
+- Confidence score
+- Executive summary
+- Threat fingerprint
+- Recommendations
+
+---
+
+### Intelligence Report Generation
+
+SentinelNet automatically creates a professional PDF intelligence report containing:
+
+- Executive Summary
+- Threat Attribution
+- Risk Assessment
+- Recommendations
+- Investigation Metadata
+- Threat Fingerprint
+
+Reports can be downloaded immediately for operational use.
+
+---
+
+### Evidence Preservation
+
+Generated reports are uploaded to:
+
+# 0G Storage Network
+
+Each report receives:
+
+- Merkle Root Hash
+- Blockchain Transaction Record
+- Verifiable Storage Proof
+
+This creates a permanent forensic record that can be independently verified.
 
 ---
 
 ## Key Features
 
-### Threat Analysis Engine
+### AI Threat Intelligence Engine
 
-* AI-powered threat classification
-* Phishing detection
-* Malware detection
-* Crypto scam detection
-* Brand impersonation detection
-* Credential theft identification
+- Automated threat classification
+- Threat scoring
+- Confidence estimation
+- Threat fingerprint generation
 
-### IOC Extraction
+### Investigation Workspace
 
-Automatically extracts:
+- Threat visualization
+- Memory correlation
+- Intelligence summaries
+- Investigation tracking
 
-* Domains
-* URLs
-* IP Addresses
-* Email Addresses
-* Cryptocurrency Wallets
-* File Hashes
-* Phone Numbers
+### PDF Intelligence Reports
 
-### Threat Genome Fingerprinting
+- Professional threat reports
+- Downloadable evidence packages
+- Executive-ready documentation
 
-Generates a unique threat fingerprint for every analyzed threat to support:
+### 0G Decentralized Storage
 
-* Campaign tracking
-* Threat clustering
-* Memory correlation
-* Repeat attack detection
+- Evidence preservation
+- Verifiable integrity
+- Tamper-resistant storage
+- Blockchain-backed records
 
-### Threat Intelligence Dashboard
+### Evidence Vault
 
-Provides:
+- Root Hash display
+- Verification metadata
+- Investigation lifecycle tracking
 
-* Risk scoring
-* Confidence scoring
-* Threat categorization
-* Attack family identification
-* Executive intelligence summaries
-* Recommended response actions
+---
 
-### Threat Memory Database
+## How It Works
 
-Stores historical intelligence and enables:
-
-* Memory matching
-* Similar attack discovery
-* Campaign correlation
-* Historical threat tracking
-
-### MITRE ATT&CK Mapping
-
-Maps observed behaviors to recognized attack techniques and tactics.
+```text
+Threat Submission
+        │
+        ▼
+AI Threat Analysis
+        │
+        ▼
+Threat Intelligence Report
+        │
+        ▼
+Evidence Packaging
+        │
+        ▼
+0G Storage Upload
+        │
+        ▼
+Root Hash Generation
+        │
+        ▼
+Evidence Verification
+```
 
 ---
 
 ## Architecture
 
-Frontend:
-
-* Next.js 16
-* React
-* Tailwind CSS
-* Axios
-
-Backend:
-
-* FastAPI
-* SQLAlchemy
-* SQLite / PostgreSQL
-* Python
-
-Artificial Intelligence:
-
-* Groq LLM API
-* Threat Genome Engine
-* IOC Correlation Engine
-* Threat Memory Engine
-
----
-
-## Platform Workflow
-
-1. User submits threat content.
-2. SentinelNet extracts indicators.
-3. AI engine classifies the threat.
-4. Threat Genome Fingerprint is generated.
-5. Intelligence database is queried.
-6. Historical correlations are identified.
-7. MITRE ATT&CK mapping is performed.
-8. Executive intelligence report is generated.
-9. Recommended actions are provided.
+```text
+┌────────────────────┐
+│     Frontend       │
+│      Next.js       │
+└─────────┬──────────┘
+          │
+          ▼
+┌────────────────────┐
+│      FastAPI       │
+│      Backend       │
+└─────────┬──────────┘
+          │
+          ▼
+┌────────────────────┐
+│   Threat Engine    │
+│       Groq AI      │
+└─────────┬──────────┘
+          │
+          ▼
+┌────────────────────┐
+│ Report Generator   │
+│      jsPDF         │
+└─────────┬──────────┘
+          │
+          ▼
+┌────────────────────┐
+│   0G Storage       │
+│ Decentralized Net  │
+└────────────────────┘
+```
 
 ---
 
-## Supported Inputs
+## Tech Stack
 
-* Phishing Emails
-* Threat Reports
-* URLs
-* IOC Dumps
-* Security Alerts
-* Malware Indicators
-* Crypto Scam Reports
-* Brand Impersonation Attempts
+### Frontend
+
+- Next.js
+- React
+- TypeScript
+- TailwindCSS
+- React Flow
+- Axios
+- jsPDF
+
+### Backend
+
+- FastAPI
+- Python
+- Uvicorn
+
+### AI
+
+- Groq API
+- LLM Threat Analysis
+
+### Storage
+
+- 0G Storage Network
+- 0G Storage Client
+
+### Infrastructure
+
+- Vercel
+- Render
+
+---
+
+## 0G Integration
+
+SentinelNet integrates directly with the 0G Storage Network.
+
+### Workflow
+
+1. Generate Threat Report
+2. Convert report into PDF
+3. Upload report to 0G
+4. Receive Merkle Root Hash
+5. Display evidence verification record
+6. Preserve report permanently
+
+Example Output:
+
+```json
+{
+  "success": true,
+  "rootHash": "0x5e111f1b236b2fb6257209540ad7fd1bf9a3fb6f9eb3413ab57019be38edba26"
+}
+```
 
 ---
 
 ## Screenshots
 
-### Landing Page
+### Threat Analysis Dashboard
 
-Modern cyber intelligence dashboard with live operational telemetry.
+Add screenshot here
 
-### Command Center
+### Investigation Workspace
 
-Threat Genome Command Center used for threat investigations.
+Add screenshot here
 
-### Threat Analysis
+### Evidence Vault
 
-Executive threat intelligence reporting workspace.
+Add screenshot here
+
+### 0G Verification
+
+Add screenshot here
 
 ---
 
@@ -139,27 +268,14 @@ Executive threat intelligence reporting workspace.
 ### Clone Repository
 
 ```bash
-git clone https://github.com/neduojile/SENTINELNET.git
-cd SENTINELNET
+git clone https://github.com/YOUR_USERNAME/sentinelnet.git
+
+cd sentinelnet
 ```
 
-### Backend Setup
+---
 
-```bash
-cd backend
-
-python -m venv venv
-
-venv\Scripts\activate
-
-pip install -r requirements.txt
-
-python create_tables.py
-
-uvicorn main:app --reload
-```
-
-### Frontend Setup
+## Frontend Setup
 
 ```bash
 cd frontend
@@ -169,17 +285,55 @@ npm install
 npm run dev
 ```
 
+Frontend:
+
+```text
+http://localhost:3000
+```
+
+---
+
+## Backend Setup
+
+```bash
+cd backend
+
+pip install -r requirements.txt
+
+python -m uvicorn main:app --reload
+```
+
+Backend:
+
+```text
+http://localhost:8000
+```
+
 ---
 
 ## Environment Variables
 
+### Frontend
+
 Create:
 
 ```env
-backend/.env
+.env.local
 ```
 
-Example:
+```env
+NEXT_PUBLIC_API_URL=https://your-render-api-url.onrender.com
+```
+
+---
+
+### Backend
+
+Create:
+
+```env
+.env
+```
 
 ```env
 GROQ_API_KEY=your_groq_api_key
@@ -187,72 +341,64 @@ GROQ_API_KEY=your_groq_api_key
 
 ---
 
-## API Endpoints
+## Deployment
 
-### Health Check
+### Frontend
 
-```http
-GET /
-```
+Deploy on:
 
-### Threat Analysis
+- Vercel
 
-```http
-POST /analyze
-```
+### Backend
 
-### Statistics
+Deploy on:
 
-```http
-GET /stats
-```
+- Render
 
 ---
 
-## Example Threat Categories
+## Future Improvements
 
-* Phishing
-* Malware
-* Credential Theft
-* Crypto Scam
-* Brand Impersonation
-* Social Engineering
-* Suspicious Infrastructure
-
----
-
-## Security Notice
-
-SentinelNet is intended for cybersecurity research, threat intelligence analysis, security operations, and educational purposes.
-
-Users are responsible for ensuring compliance with local laws, organizational policies, and security guidelines.
+- Multi-file evidence preservation
+- Threat sharing network
+- Analyst collaboration
+- Case management system
+- Threat history timeline
+- Wallet-based authentication
+- Real-time threat feeds
+- On-chain evidence registry
 
 ---
 
-## Future Roadmap
+## Impact
 
-* Real-time IOC feeds
-* Threat actor profiling
-* YARA rule generation
-* SIEM integrations
-* VirusTotal enrichment
-* AbuseIPDB enrichment
-* MITRE ATT&CK visual mapping
-* Threat campaign clustering
-* Multi-tenant intelligence workspaces
+SentinelNet bridges the gap between AI-powered cybersecurity investigations and decentralized evidence preservation.
+
+By combining threat intelligence automation with immutable storage, organizations gain:
+
+- Stronger evidence integrity
+- Better incident documentation
+- Improved investigation transparency
+- Verifiable forensic records
 
 ---
 
 ## Author
 
-**Chinexojile Nedu**
+### Emmanuel Ojile
 
-Cybersecurity Researcher
-Threat Intelligence Enthusiast
-AI Security Developer
+Cybersecurity Builder | AI Developer | Web3 Enthusiast
 
 ---
 
-## SentinelNet
+## License
 
-**Detect. Correlate. Respond.**
+MIT License
+
+---
+
+## Built For
+
+### 0G Zero Cup
+
+AI x Security x Decentralized Storage

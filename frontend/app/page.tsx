@@ -57,7 +57,7 @@ export default function Home() {
           relative
           z-10
           text-center
-          max-w-3xl
+          max-w-xl
           px-6
           "
         >

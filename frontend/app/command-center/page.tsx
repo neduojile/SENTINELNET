@@ -3,7 +3,6 @@
 import { useState } from "react";
 
 import useThreatAnalysis from "@/hooks/useThreatAnalysis";
-
 import ThreatRadar from "@/components/investigation/ThreatRadar";
 import IntelligenceBrief from "@/components/investigation/IntelligenceBrief";
 import IOCPanel from "@/components/investigation/IOCPanel";
@@ -20,11 +19,27 @@ import AnalysisProgress from "@/components/investigation/AnalysisProgress";
 import AnalysisOverlay from "@/components/investigation/AnalysisOverlay";
 import { TypeAnimation } from "react-type-animation";
 import {
- generateThreatReport,
+  generateThreatReport,
+  downloadThreatReport,
 } from "@/lib/reportGenerator";
+import {
+  uploadEvidence
+} from "@/services/evidence";
+
+
+import {
+ uploadPdfTo0G,
+} from "@/lib/zgStorage";
 
 export default function CommandCenter() {
 const [content, setContent] = useState("");
+
+const [
+  evidence,
+  setEvidence
+] = useState<any>(null);
+
+
 
 const {
 analyze,
@@ -47,6 +62,121 @@ setTimeout(() => {
 
 }, 500);
 
+
+}
+
+async function handleEvidenceUpload() {
+
+  console.log("STEP 1");
+
+  if (!result) {
+    alert("No result found");
+    return;
+  }
+
+  try {
+
+    console.log("STEP 2");
+
+    const report =
+      generateThreatReport(
+        result
+      );
+
+    console.log(
+      "STEP 3",
+      report
+    );
+
+    const pdfFile =
+      new File(
+        [report.blob],
+        `${report.reportId}.pdf`,
+        {
+          type:
+            "application/pdf",
+        }
+      );
+
+    console.log(
+      "STEP 4",
+      pdfFile
+    );
+
+    const response =
+      await uploadEvidence(
+        pdfFile
+      );
+
+    console.log(
+      "STEP 5",
+      response
+    );
+
+    setEvidence(
+      response
+    );
+
+    alert(
+      "Evidence Uploaded Successfully"
+    );
+
+  } catch (err) {
+
+    console.error(
+      "UPLOAD ERROR",
+      err
+    );
+
+    alert(
+      "Upload Failed"
+    );
+
+  }
+
+}
+
+async function handleStoreOn0G() {
+
+  if (!result) return;
+
+  try {
+
+    const report =
+      generateThreatReport(
+        result
+      );
+
+    const pdfFile =
+      new File(
+        [report.blob],
+        `${report.reportId}.pdf`,
+        {
+          type:
+            "application/pdf",
+        }
+      );
+
+  const tx =
+  await uploadPdfTo0G(
+    pdfFile
+  );
+
+    setEvidence(tx);
+
+    alert(
+      "Stored on 0G successfully"
+    );
+
+  } catch (error) {
+
+    console.error(error);
+
+    alert(
+      "0G upload failed"
+    );
+
+  }
 
 }
 
@@ -361,6 +491,8 @@ return (
 
 {/* EXECUTIVE THREAT BANNER */}
 
+
+
 <div
   className={`
   mb-6
@@ -528,66 +660,396 @@ return (
 
   </div>
 
-  {/* FINGERPRINT */}
+ {/* EVIDENCE & FINGERPRINT */}
 
-  <div
-    className="
+<div
+  className="
     border
     border-cyan-500/20
-    rounded-2xl
+    rounded-3xl
     p-8
-    text-center
     bg-cyan-950/10
+    backdrop-blur-md
   "
-  >
+>
 
-    <div className="mb-6 flex justify-end">
+  <div className="flex justify-end mb-8">
 
-  <button
-    onClick={() =>
-      generateThreatReport(result)
-    }
-    className="
-      px-6
-      py-3
-      rounded-xl
-      border
-      border-cyan-400
-      bg-cyan-500/10
-      hover:bg-cyan-500/20
-      transition-all
-    "
-  >
-    EXPORT INTELLIGENCE REPORT
-  </button>
+    <button
+      onClick={handleEvidenceUpload}
+      className="
+        px-6
+        py-3
+        rounded-xl
+        border
+        border-cyan-400
+        bg-cyan-500/10
+        hover:bg-cyan-500/20
+        hover:shadow-[0_0_25px_rgba(0,255,255,0.4)]
+        transition-all
+      "
+    >
+      EXPORT & STORE EVIDENCE
+    </button>
 
-</div>
+  </div>
 
-    <div className="text-cyan-400 mb-2">
+  {/* FINGERPRINT */}
+
+  <div className="text-center mb-10">
+
+    <div className="text-cyan-400 text-sm tracking-[0.3em] mb-3">
       THREAT GENOME FINGERPRINT
     </div>
 
     <div
       className="
-      text-2xl
-      md:text-5xl
-      font-black
-      text-cyan-300
-      break-all
-    "
+        text-lg
+        md:text-3xl
+        font-black
+        text-cyan-300
+        break-all
+      "
     >
       {result.analysis.fingerprint}
     </div>
 
   </div>
 
-      </>
+  {/* EVIDENCE VAULT */}
 
-    )}
+  {evidence && (
+
+    <div
+      className="
+        border
+        border-green-500/30
+        rounded-3xl
+        p-8
+        bg-gradient-to-br
+        from-green-950/20
+        to-black/50
+        mb-8
+      "
+    >
+
+      <div
+        className="
+          flex
+          justify-between
+          items-center
+          mb-8
+        "
+      >
+
+        <div>
+
+          <div className="text-xs text-zinc-500 tracking-[0.3em]">
+            BLOCKCHAIN EVIDENCE VAULT
+          </div>
+
+          <h2
+            className="
+              text-3xl
+              font-black
+              text-green-400
+              mt-2
+            "
+          >
+            VERIFIED EVIDENCE
+          </h2>
+
+        </div>
+
+        <div
+          className="
+            px-4
+            py-2
+            rounded-full
+            bg-green-500/20
+            text-green-400
+            font-bold
+          "
+        >
+          VERIFIED
+        </div>
+
+      </div>
+
+      {/* METRICS */}
+
+      <div
+        className="
+          grid
+          md:grid-cols-4
+          gap-4
+          mb-8
+        "
+      >
+
+        <div className="border border-cyan-500/20 rounded-xl p-4">
+          <div className="text-zinc-500 text-xs">
+            STORAGE
+          </div>
+          <div className="text-cyan-300 font-bold">
+            0G NETWORK
+          </div>
+        </div>
+
+        <div className="border border-cyan-500/20 rounded-xl p-4">
+          <div className="text-zinc-500 text-xs">
+            STATUS
+          </div>
+          <div className="text-green-400 font-bold">
+            VERIFIED
+          </div>
+        </div>
+
+        <div className="border border-cyan-500/20 rounded-xl p-4">
+          <div className="text-zinc-500 text-xs">
+            REPORT
+          </div>
+          <div className="text-cyan-300 font-bold">
+            ACTIVE
+          </div>
+        </div>
+
+        <div className="border border-cyan-500/20 rounded-xl p-4">
+          <div className="text-zinc-500 text-xs">
+            TIMESTAMP
+          </div>
+          <div className="text-white font-bold">
+            {new Date().toLocaleTimeString()}
+          </div>
+        </div>
+
+      </div>
+
+      {/* ROOT HASH */}
+
+      <div className="mb-6">
+
+        <div className="text-zinc-500 text-xs mb-2">
+          ROOT HASH
+        </div>
+
+        <div
+          className="
+            bg-black/60
+            border
+            border-cyan-500/20
+            rounded-xl
+            p-4
+            font-mono
+            text-xs
+            break-all
+            text-cyan-300
+          "
+        >
+          {evidence.rootHash}
+        </div>
+
+      </div>
+
+      {/* TX HASH */}
+
+      <div>
+
+        <div className="text-zinc-500 text-xs mb-2">
+          TRANSACTION HASH
+        </div>
+
+        <div
+          className="
+            bg-black/60
+            border
+            border-cyan-500/20
+            rounded-xl
+            p-4
+            font-mono
+            text-xs
+            break-all
+            text-cyan-300
+          "
+        >
+          {evidence.txHash || "Pending Confirmation"}
+        </div>
+
+      </div>
+
+      <div className="mt-6">
+
+  <div className="text-zinc-500 text-xs mb-2">
+    STORAGE LAYER
+  </div>
+
+  <div className="text-green-400 font-bold">
+    0G DECENTRALIZED STORAGE
+  </div>
+
+</div>
+
+<div className="mt-4">
+
+  <div className="text-zinc-500 text-xs mb-2">
+    INTEGRITY STATUS
+  </div>
+
+  <div className="text-green-400 font-bold">
+    CRYPTOGRAPHICALLY VERIFIED
+  </div>
+
+</div>
+
+<div className="mt-4">
+
+  <div className="text-zinc-500 text-xs mb-2">
+    EVIDENCE CLASSIFICATION
+  </div>
+
+  <div className="text-cyan-300 font-bold">
+    IMMUTABLE FORENSIC RECORD
+  </div>
+
+</div>
+
+    </div>
+
+  )}
+
+  {/* INVESTIGATION CHAIN */}
+
+  <div
+    className="
+      border
+      border-cyan-500/20
+      rounded-3xl
+      p-8
+      bg-cyan-950/5
+      mb-8
+    "
+  >
+
+    <h3
+      className="
+        text-cyan-300
+        text-2xl
+        font-bold
+        text-center
+        mb-8
+      "
+    >
+      INVESTIGATION CHAIN
+    </h3>
+
+    <div
+      className="
+        flex
+        flex-wrap
+        justify-center
+        items-center
+        gap-4
+      "
+    >
+
+      <div className="text-center">
+        <div className="text-green-400 text-3xl">✓</div>
+        <div>Threat Submitted</div>
+      </div>
+
+      <div className="text-cyan-400 text-2xl">→</div>
+
+      <div className="text-center">
+        <div className="text-green-400 text-3xl">✓</div>
+        <div>AI Analysis</div>
+      </div>
+
+      <div className="text-cyan-400 text-2xl">→</div>
+
+      <div className="text-center">
+        <div className="text-green-400 text-3xl">✓</div>
+        <div>Report Generated</div>
+      </div>
+
+      <div className="text-cyan-400 text-2xl">→</div>
+
+      <div className="text-center">
+        <div className="text-green-400 text-3xl">✓</div>
+        <div>Stored On 0G</div>
+      </div>
+
+      <div className="text-cyan-400 text-2xl">→</div>
+
+      <div className="text-center">
+        <div className="text-green-400 text-3xl">✓</div>
+        <div>Evidence Verified</div>
+      </div>
+
+    </div>
 
   </div>
+
+
+      <div
+  className="
+    mb-6
+    p-5
+    rounded-2xl
+    border
+    border-green-500/30
+    bg-green-500/10
+    text-center
+  "
+>
+
+  <div className="text-green-400 text-xl font-bold">
+    ✓ FORENSIC EVIDENCE SECURED ON 0G NETWORK
+  </div>
+
+  <div className="text-zinc-400 mt-2">
+    Report fingerprinted, hashed and stored on decentralized infrastructure.
+  </div>
+
+</div>
+
+
+
+ {/* DOWNLOAD */}
+
+<button
+  onClick={() =>
+    downloadThreatReport(result)
+  }
+  className="
+    w-full
+    py-4
+    rounded-2xl
+    border
+    border-cyan-400
+    bg-gradient-to-r
+    from-cyan-500/10
+    to-blue-500/10
+    hover:from-cyan-500/20
+    hover:to-blue-500/20
+    hover:shadow-[0_0_40px_rgba(0,255,255,0.3)]
+    transition-all
+    text-lg
+    font-bold
+  "
+>
+  DOWNLOAD VERIFIED INTELLIGENCE REPORT
+</button>
+
+</div>
+
+</>
+
+)}
+
+</div>
 
 </main>
 
 );
 }
+
